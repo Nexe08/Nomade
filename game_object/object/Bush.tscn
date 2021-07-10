@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://new_ASSATE/enviremental.png" type="Texture" id=1]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( -4.88647, -5.95089, -0.403063, -7.30771, 5.08321, -6.06887, 8.20979, -2.47035, 8.03281, 7.08637, -7.95406, 7.20436, -8.07204, -1.93942, -6.8922, -3.94516 )
+
+[node name="Bush" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 50, 16, 14 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 1 )
