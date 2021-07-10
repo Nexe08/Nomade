@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player/Texture/cursor.png" type="Texture" id=1]
+[ext_resource path="res://Player/cursor.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "default"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.992157, 0.00392157, 0.00392157, 1 ), Color( 1, 0.74902, 0, 1 ), Color( 0.243137, 0.988235, 0.00392157, 1 ), Color( 0.00784314, 0.988235, 0.917647, 1 ), Color( 0.054902, 0, 0.996078, 1 ), Color( 0.988235, 0.0117647, 0.356863, 1 ) ]
+}
+
+[node name="cursor" type="Sprite"]
+modulate = Color( 0.558903, 0.888434, 0.00228547, 1 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/default = SubResource( 1 )

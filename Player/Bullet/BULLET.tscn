@@ -1,0 +1,148 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Player/Bullet/BULLET.gd" type="Script" id=1]
+[ext_resource path="res://Player/Texture/bullet.png" type="Texture" id=2]
+[ext_resource path="res://Player/Texture/light.png" type="Texture" id=4]
+[ext_resource path="res://Player/Texture/rect_partical.png" type="Texture" id=5]
+[ext_resource path="res://Player/SFX/bullet_shoot.ogg" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.852, 2.37173 )
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0, 0.596078, 0.862745, 0, 0, 0.596078, 0.862745, 1 )
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 1, 1, 1, 1, 0.0470588, 0.945098, 1, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.4875 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+lifetime_randomness = 1.0
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.02
+angular_velocity = 2.0
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+linear_accel = 100.0
+damping = 44.62
+scale = 0.21
+scale_random = 0.3
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
+
+[sub_resource type="Curve" id=8]
+min_value = -1.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, -1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.982456, 0.339773 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 120, 0 )
+initial_velocity = 42.48
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_random = 0.3
+scale_curve = SubResource( 11 )
+hue_variation_curve = SubResource( 9 )
+
+[node name="BULLET" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 5
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+damage = 1.0
+speed = 1000.0
+
+[node name="Sprite" type="TextureRect" parent="."]
+modulate = Color( 0.0470588, 0.945098, 1, 1 )
+margin_left = -24.0
+margin_top = -24.0
+margin_right = 36.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 16, 16 )
+rect_scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.47, -0.682 )
+shape = SubResource( 1 )
+
+[node name="area_object_detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="area_object_detector"]
+position = Vector2( 1.47, -0.682 )
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 1.52588e-05, 0 )
+scale = Vector2( 2.4, 1.6 )
+
+[node name="Glow" type="Sprite" parent="."]
+modulate = Color( 0.0470588, 0.945098, 1, 1 )
+position = Vector2( 1.43051e-06, 1.43051e-06 )
+scale = Vector2( 0.48, 0.48 )
+texture = ExtResource( 4 )
+
+[node name="trail" type="Line2D" parent="."]
+default_color = Color( 0.4, 0.501961, 1, 1 )
+gradient = SubResource( 2 )
+
+[node name="FireSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+max_distance = 800.0
+
+[node name="trail_partical" type="Particles2D" parent="."]
+amount = 100
+local_coords = false
+process_material = SubResource( 7 )
+texture = ExtResource( 5 )
+
+[node name="Hit_partical" type="Particles2D" parent="."]
+z_index = 1
+emitting = false
+amount = 3
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.68
+randomness = 1.0
+local_coords = false
+process_material = SubResource( 12 )
+texture = ExtResource( 5 )
+
+[connection signal="body_entered" from="." to="." method="_body_enterd"]
+[connection signal="area_entered" from="area_object_detector" to="." method="collision_with_area"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="exit_the_screen"]

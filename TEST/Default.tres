@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://WeaponClass.gd" type="Script" id=1]
+[ext_resource path="res://new_ASSATE/superpowers-asset-packs-master/superpowers-asset-packs-master/top-down-shooter/weapons/5.png" type="Texture" id=2]
+[ext_resource path="res://new_ASSATE/superpowers-asset-packs-master/superpowers-asset-packs-master/top-down-shooter/weapons/shoot/5.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+Name = "Default"
+damage = 10.0
+speed = 1000.0
+fire_rate = 0.2
+life_time = 1.5
+projectile_texture = ExtResource( 3 )
+projectile_texture_path = "res://new_ASSATE/superpowers-asset-packs-master/superpowers-asset-packs-master/top-down-shooter/weapons/shoot/5.png"
+icon_texture = ExtResource( 2 )
+icon_texture_path = "res://new_ASSATE/superpowers-asset-packs-master/superpowers-asset-packs-master/top-down-shooter/weapons/5.png"
+drop_texture = ExtResource( 2 )
+drop_texture_path = "res://new_ASSATE/superpowers-asset-packs-master/superpowers-asset-packs-master/top-down-shooter/weapons/5.png"

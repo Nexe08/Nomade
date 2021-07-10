@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Anticipation_sfx.ogg-64fa7ff2501ef49c4e0ce4e6fc2e488d.oggstr"
+
+[deps]
+
+source_file="res://Torrent/SFX/Anticipation_sfx.ogg"
+dest_files=[ "res://.import/Anticipation_sfx.ogg-64fa7ff2501ef49c4e0ce4e6fc2e488d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

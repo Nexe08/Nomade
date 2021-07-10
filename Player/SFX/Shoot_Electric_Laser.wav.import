@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Shoot_Electric_Laser.wav-64416afb1e01d4c6e7a0c75231292e26.sample"
+
+[deps]
+
+source_file="res://Player/SFX/Shoot_Electric_Laser.wav"
+dest_files=[ "res://.import/Shoot_Electric_Laser.wav-64416afb1e01d4c6e7a0c75231292e26.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
